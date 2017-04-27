@@ -15,6 +15,7 @@ import {
 import Login from './Login.js'
 import ConnectionHandler from './ConnectionHandler'
 import MainApp from './MainApp.js'
+import Test3 from './Test3'
 
 export default class ShareYourCar extends Component {
 
@@ -51,7 +52,9 @@ export default class ShareYourCar extends Component {
               case 'login':
                 return <Login navigator={navigator} connectionHandler={ this.state.connectionHandler}/>
               case 'mainApp':
-                return <MainApp />
+                return <MainApp/>
+              case 'addRoute':
+                return <Test3/>
             }
 
           }}

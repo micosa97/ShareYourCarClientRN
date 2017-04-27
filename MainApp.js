@@ -4,8 +4,15 @@ import {
   StyleSheet,
   Text,
   View,
-  BackAndroid, TextInput, Button, Alert, ScrollView
+  BackAndroid, TextInput, Button, Alert, ScrollView, Navigator
 } from 'react-native';
+import Test3 from "./Test3";
+
+import AddRoute from "./AddRoute.js"
+import ShowMatches from "./ShowMatches.js"
+import AddWish from "./AddWish.js"
+import ShowWishes from "./ShowWishes.js"
+import ShowRoutes from "./ShowRoutes.js"
 
 
 const SideMenu = require('react-native-side-menu');
@@ -19,22 +26,47 @@ class ContentView extends React.Component {
   }
 }
 
+class Second extends React.Component{
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Second screen
+        </Text>
+      </View>
+    );
+  }
+};
+
+class First extends React.Component{
+  render() {
+    return (
+      <View  style={styles.container}>
+        <Text>
+          First screen
+        </Text>
+      </View>
+    );
+  }
+};
+
+const a = <View>
+  <Text>
+    First screen
+  </Text>
+</View>
+
+const b = <View>
+  <Text>
+    First screen
+  </Text>
+</View>
+
 class MainApp extends React.Component {
   constructor () {
     super()
     this.state = {
-      a:<View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+Control+Z for dev menu
-        </Text>
-      </View>
+      currentView:<First/>
     }
   }
 
@@ -43,32 +75,58 @@ class MainApp extends React.Component {
       <SideMenu
         ref={(c) => this._slideMenu = c}
         menu={
-          <View>
+          <View style={styles.menu}>
             <ScrollView
                //contentContainerStyle={styles.container}
-               //style={styles.scrollView}
+               style={styles.scrollView}
             >
 
               <Button
-                title="Add Wish"/>
+                title="Add Wish"
+                onPress={() => {
+                  //  this.state
+                  this.setState({currentView: <AddWish/>})
+                }}/>
               <Button
-                title="Add Route"/>
+                title="Add Route"
+                onPress={() => {
+                //  this.state
+                 this.setState({currentView: <AddRoute/>})
+                }}/>
               <Button
-                title="Show Routes"/>
+                title="Show Routes"
+                onPress={() => {
+                  //  this.state
+                  this.setState({currentView: <ShowRoutes/>})
+                }}/>
               <Button
-                title="Show Wishes"/>
+                title="Show Wishes"
+                onPress={() => {
+                  //  this.state
+                  this.setState({currentView: <ShowWishes/>})
+                }}/>
               <Button
-                title="Show Matches"/>
+                title="Show Matches"
+                onPress={() => {
+                  //  this.state
+                  this.setState({currentView: <ShowMatches/>})
+                }}/>
               <Button
-                title="Close"/>
+                title="Close"
+                onPress={()=>{BackAndroid.exitApp();}}/>
 
             </ScrollView>
           </View>
         }>
 
 
-        <ContentView
-          a={this.state.a}/>
+        <Navigator
+          initialRoute={{id: 'welcome'}}
+          renderScene={() =>{return this.state.currentView}}
+          configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromRight}
+
+
+        />
 
 
 
@@ -95,6 +153,14 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  scrollView: {
+    backgroundColor: '#eeeeee',
+    height: 300,
+  },
+  menu: {
+    backgroundColor: '#F5FCFF',
+   // justifyContent:'space-between'
+  }
 });
 
 
