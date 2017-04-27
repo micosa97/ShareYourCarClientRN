@@ -6,6 +6,10 @@ import {
 } from 'react-native';
 
 class ShowWishes extends React.Component{
+  constructor(props) {
+    super(props);
+    this.props.connectionHandler.ShowWishes();
+  }
   render() {
     return (
       <View style={styles.container}>

@@ -6,6 +6,10 @@ import {
 } from 'react-native';
 
 class ShowRoute extends React.Component{
+  constructor(){
+    super();
+
+  }
   render() {
     return (
       <View style={styles.container}>

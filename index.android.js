@@ -52,9 +52,7 @@ export default class ShareYourCar extends Component {
               case 'login':
                 return <Login navigator={navigator} connectionHandler={ this.state.connectionHandler}/>
               case 'mainApp':
-                return <MainApp/>
-              case 'addRoute':
-                return <Test3/>
+                return <MainApp connectionHandler={ this.state.connectionHandler}/>
             }
 
           }}

@@ -63,8 +63,8 @@ const b = <View>
 </View>
 
 class MainApp extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       currentView:<First/>
     }
@@ -103,7 +103,7 @@ class MainApp extends React.Component {
                 title="Show Wishes"
                 onPress={() => {
                   //  this.state
-                  this.setState({currentView: <ShowWishes/>})
+                  this.setState({currentView: <ShowWishes connectionHandler={ this.props.connectionHandler}/>})
                 }}/>
               <Button
                 title="Show Matches"
